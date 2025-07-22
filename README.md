@@ -156,6 +156,38 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 - [Report file (vietnamese version)](https://docs.google.com/document/d/1hOOiTFm2wsBKgGwJUieeX5dTu9OoII9BGVdYOSPCmSc)
 
 ---
+## 🔧 Folder Structure
+
+```
+.
+├── arduino/                      # Arduino Uno firmware (MAX30102, MLX90614, LCD)
+│   └── Arduino_max30102_lcdi2c_gy-906.ino
+│
+├── esp32/                        # ESP32 firmware for Wi-Fi + Supabase upload
+│   └── Final_Health_Monitoring_ESP32.ino
+│
+├── web/                          # Web dashboard (HTML + JS + Supabase integration)
+│   ├── index.html
+│   ├── admin.html
+│   ├── redirect.html
+│   └── user.html
+│
+├── telegram/                     # Telegram bot server (Python)
+│   ├── main.py
+│   ├── requirements.txt
+│   └── .env.example              # Example environment config
+│
+├── docs/                         # Diagrams, report, and presentation
+│   ├── Report.pdf
+│   ├── Circuit_Diagram.png
+│   └── Flowchart.png
+│
+├── LICENSE                       # MIT License
+├── README.md                     # This readme
+└── .gitignore                    # Ignore compiled files and secrets
+```
+
+---
 
 ## 🛠️ Technology Stack
 
@@ -251,6 +283,26 @@ CREATE TABLE user_profiles (
    ```
 5. It is recommended to deploy this bot to a service like Heroku or a VPS for continuous operation.
 
-## 👥 Contact
+---
+## 🧾 License
 
-For further details or collaboration, please contact the project team via the Telegram Bot or reach out through the course platform.
+This project is licensed under the **MIT License** — you are free to use, modify, and distribute this software. See [`LICENSE`](./LICENSE) for details.
+
+---
+## 🤝 Contributing
+
+We welcome contributors!
+
+1. **Fork** this repository
+2. Create a **feature branch** (`git checkout -b feature/my-feature`)
+3. Commit changes (`git commit -m 'Add my feature'`)
+4. Push to GitHub (`git push origin feature/my-feature`)
+5. Open a **Pull Request**
+
+---
+## 👥 Contact
+x`x`
+For further details or collaboration, please contact the project leader through:
+- **Email**: hoanglong2712005@gmail.com  
+- **Facebook**: [fb.me/wdchocopie](https://fb.me/wdchocopie)  
+- **LinkedIn**: [linkedin.com/in/wdchocopie](https://www.linkedin.com/in/wdchocopie/)
