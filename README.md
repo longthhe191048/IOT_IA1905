@@ -164,7 +164,88 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 
 ---
 
+## 🚀 How to Deploy
+
+### 1. Hardware Setup
+- Connect the MAX30102 and GY-906 sensors to the Arduino Uno.
+- Connect the LCD I2C display to the Arduino Uno.
+- Connect the Arduino Uno to the ESP32 via SoftwareSerial on pins 2 (RX) and 3 (TX) of the Arduino.
+
+### 2. Supabase Setup
+1. Go to [Supabase](https://supabase.com/) and create a new project.
+2. Go to the `SQL Editor` and run the following queries to create the necessary tables:
+
+```sql
+-- Create the table for hourly data
+CREATE TABLE followhour (
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    "time" TIMESTAMPTZ DEFAULT now() NOT NULL,
+    bpm_avg REAL,
+    temperature REAL
+);
+
+-- Create the table for daily test data
+CREATE TABLE onetest (
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    "date" TIMESTAMPTZ DEFAULT now() NOT NULL,
+    bpm_avg REAL,
+    temperature REAL
+);
+
+-- Create user profiles table
+CREATE TABLE user_profiles (
+    id UUID PRIMARY KEY,
+    email TEXT UNIQUE,
+    status TEXT DEFAULT 'pending', -- pending, approved, rejected
+    "role" TEXT DEFAULT 'user' -- user, admin
+);
+```
+3. In your Supabase project, go to `Authentication` -> `Providers` and enable `Google`.
+4. Go to `Settings` -> `API` and copy your `URL` and `anon key`. You will need these for the ESP32, web, and Telegram configurations.
+
+### 3. Arduino Firmware
+1. Open the `Arduino_max30102_lcdi2c_gy-906/Arduino_max30102_lcdi2c_gy-906.ino` file in the Arduino IDE.
+2. Install the required libraries: `MAX30105`, `Adafruit_MLX90614`, `LiquidCrystal_I2C`.
+3. Upload the sketch to your Arduino Uno.
+
+### 4. ESP32 Firmware
+1. Open `Final_Health_Monitoring_ESP32/Final_Health_Monitoring_ESP32.ino` in the Arduino IDE.
+2. Make sure you have the ESP32 board manager installed.
+3. Install the required libraries: `ArduinoJson`.
+4. Update the following variables with your Supabase credentials:
+   ```cpp
+   const char* supabaseUrl = "YOUR_SUPABASE_URL";
+   const char* supabaseKey = "YOUR_SUPABASE_ANON_KEY";
+   ```
+5. The ESP32 will start in AP (Access Point) mode. Connect to the "Health monitor V1" Wi-Fi network (password: `YOUR_AP_PASSWORD`) and configure your Wi-Fi credentials through the web interface at `192.168.4.1`.
+6. Upload the sketch to your ESP32.
+
+### 5. Web Interface
+1. Open the following files and replace `"YOUR_SUPABASE_URL"` and `"YOUR_SUPABASE_ANON_KEY"` with your Supabase API credentials:
+   - `web/admin.html`
+   - `web/index.html`
+   - `web/redirect.html`
+   - `web/user.html`
+2. Deploy the `web` folder to a static hosting service like Netlify, Vercel, or GitHub Pages.
+
+### 6. Telegram Bot
+1. Create a new Telegram bot by talking to the [BotFather](https://t.me/botfather) on Telegram. Copy the bot token.
+2. In the `telegram` directory, create a `.env` file from the `.env.example` and add your credentials:
+   ```
+   TELEGRAM_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
+   SUPABASE_URL=YOUR_SUPABASE_URL
+   SUPABASE_KEY=YOUR_SUPABASE_ANON_KEY
+   ```
+3. Install the Python dependencies:
+   ```bash
+   pip install -r telegram/requirements.txt
+   ```
+4. Run the bot:
+   ```bash
+   python telegram/main.py
+   ```
+5. It is recommended to deploy this bot to a service like Heroku or a VPS for continuous operation.
+
 ## 👥 Contact
 
 For further details or collaboration, please contact the project team via the Telegram Bot or reach out through the course platform.
-
