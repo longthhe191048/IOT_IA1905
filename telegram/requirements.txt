@@ -1,0 +1,5 @@
+python-telegram-bot[job-queue]
+supabase
+python-dotenv
+aiolimiter
+pytz
