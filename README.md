@@ -301,7 +301,7 @@ We welcome contributors!
 
 ---
 ## 👥 Contact
-x`x`
+
 For further details or collaboration, please contact the project leader through:
 - **Email**: hoanglong2712005@gmail.com  
 - **Facebook**: [fb.me/wdchocopie](https://fb.me/wdchocopie)  
