@@ -35,6 +35,8 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 - Displays data on LCD and Web/App
 - Enables doctors to monitor remotely
 
+<img width="991" height="507" alt="image" src="https://github.com/user-attachments/assets/c3f589cc-1bb8-4ca9-ab60-5d5a07dcdbdb" />
+
 ---
 
 ## II. System Analysis and Design
@@ -52,11 +54,11 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 
 #### Circuit Diagram
 
-> *[Include image here if applicable]*
+<img width="954" height="553" alt="image" src="https://github.com/user-attachments/assets/590bc52d-850b-442a-aebf-0eb62643c57a" />
 
 #### Schematic Diagram
 
-> *[Include image here if applicable]*
+<img width="988" height="696" alt="image" src="https://github.com/user-attachments/assets/0364034a-a68a-4003-909c-9af266b4b70a" />
 
 ---
 
@@ -64,7 +66,7 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 
 #### Algorithm Flowchart
 
-> *[Include diagram if available]*
+<img width="940" height="692" alt="image" src="https://github.com/user-attachments/assets/786a75f1-98e6-4f97-a96b-e1a3ad7b4cd8" />
 
 #### Key Functions
 
@@ -149,6 +151,9 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 ### V.1. Links
 
 - [Presentation Slides (Canva)](https://www.canva.com/design/DAGtuN_zcZg/F0IDgzr--heltMMNk1S87A/edit?utm_content=DAGtuN_zcZg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- [Web testing link](longthhe191048.tech)
+- [Telegram bot](t.me/iot_su25_ia1905_bot)
+- [Report file (vietnamese version)](https://docs.google.com/document/d/1hOOiTFm2wsBKgGwJUieeX5dTu9OoII9BGVdYOSPCmSc)
 
 ---
 
