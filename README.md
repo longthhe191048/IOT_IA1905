@@ -17,7 +17,8 @@
 
 ## 📌 Project Summary
 
-This remote health monitoring system is designed to collect vital signs such as body temperature and heart rate using biomedical sensors. Data is displayed on an LCD screen and a web/app interface, allowing doctors to monitor and provide feedback remotely. All data is stored in real time in a cloud database and can be exported as Excel sheets for analysis and reporting.
+The remote health monitoring system is designed to collect vital signs from patients, such as body temperature and heart rate, using biomedical sensors. Data is displayed on an LCD screen and through a Web/App interface, allowing doctors to monitor and respond remotely. All data is stored in real-time in a database, which can be exported as spreadsheets (Excel) for analysis and reporting. The system also
+integrates a buzzer to emit signals when data is successfully sent to the database. 
 
 The project supports remote healthcare, especially in regions with limited medical staff or during pandemics.
 
@@ -27,15 +28,15 @@ The project supports remote healthcare, especially in regions with limited medic
 
 ### I.1. Motivation
 
-There is a growing demand for remote health monitoring, especially in pandemics or areas with medical staff shortages. Vital signs such as heart rate and body temperature need to be monitored continuously. Automation and remote data access can ease the burden on the healthcare system.
+The demand for remote health monitoring is increasing, especially in the context of pandemics or in underserved areas. Vital signs like heart rate and temperature need constant monitoring. Automating and remotely accessing this data can help reduce strain on healthcare systems.
 
 ### I.2. Project Overview
 
-- Measures heart rate and temperature using sensors
-- Displays data on LCD and Web/App
-- Enables doctors to monitor remotely
+- The system reads and records heart rate and temperature using sensors.
+- Displays the data on an LCD and a Web/App interface.
+- Allows doctors to remotely monitor the patient's vital signs.
 
-<img width="991" height="507" alt="image" src="https://github.com/user-attachments/assets/c3f589cc-1bb8-4ca9-ab60-5d5a07dcdbdb" />
+<img width="940" height="481" alt="image" src="https://github.com/user-attachments/assets/333c091d-dd42-4b79-be10-6839afdf73b7" />
 
 ---
 
@@ -54,11 +55,11 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 
 #### Circuit Diagram
 
-<img width="954" height="553" alt="image" src="https://github.com/user-attachments/assets/590bc52d-850b-442a-aebf-0eb62643c57a" />
+<img width="918" height="533" alt="image" src="https://github.com/user-attachments/assets/db3c085b-c877-48b1-9ac7-a03e236375f9" />
 
 #### Schematic Diagram
 
-<img width="988" height="696" alt="image" src="https://github.com/user-attachments/assets/0364034a-a68a-4003-909c-9af266b4b70a" />
+<img width="913" height="636" alt="image" src="https://github.com/user-attachments/assets/bc12ae63-8235-4dc8-bc5f-abdf4e84cdd1" />
 
 ---
 
@@ -66,12 +67,40 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 
 #### Algorithm Flowchart
 
-<img width="940" height="692" alt="image" src="https://github.com/user-attachments/assets/786a75f1-98e6-4f97-a96b-e1a3ad7b4cd8" />
+<img width="954" height="732" alt="image" src="https://github.com/user-attachments/assets/7b17994f-98cb-4900-8079-f91ad9c271ee" />
 
 #### Key Functions
 
 - **Heart Rate Detection**: Calculates beats per minute and averages recent readings for stability.
+  
+```
+  if (checkForBeat(irValue)) {
+    long delta = millis() - lastBeat;
+    lastBeat = millis();
+    
+    beatsPerMinute = 60 / (delta / 1000.0);
+    
+    if (beatsPerMinute > 20 && beatsPerMinute < 255) {
+      rates[rateSpot++] = (byte)beatsPerMinute;
+      rateSpot %= RATE_SIZE;
+      
+      beatAvg = 0;
+      for (byte x = 0; x < RATE_SIZE; x++)
+        beatAvg += rates[x];
+      beatAvg /= RATE_SIZE;
+    }
+  }
+```
+
 - **Temperature Measurement**: Measures user’s temperature every 1 second and stores it in a variable.
+
+```
+  // Read temperature every 1s
+  if (millis() - lastTempRead >= 1000) {
+    temperature = tempSensor.readObjectTempC();
+    lastTempRead = millis();
+  }
+```
 
 ---
 
@@ -79,8 +108,7 @@ There is a growing demand for remote health monitoring, especially in pandemics 
 
 ### III.1. Experiment
 
-- Hands-on test using biomedical sensors  
-- Video documentation of the test (touch-based measurement)
+Video of the experiment: [Sensor-based testing demonstration](https://drive.google.com/drive/folders/14AeoBDOAd2g8ZjJYt7ODGIy9jfw0am6b).
 
 ### III.2. Results
 
