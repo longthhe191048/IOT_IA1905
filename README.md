@@ -181,7 +181,6 @@ Video of the experiment: [Sensor-based testing demonstration](https://drive.goog
 - [Presentation Slides (Canva)](https://www.canva.com/design/DAGtuN_zcZg/F0IDgzr--heltMMNk1S87A/edit?utm_content=DAGtuN_zcZg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 - [Web testing link](longthhe191048.tech)
 - [Telegram bot](t.me/iot_su25_ia1905_bot)
-- [Report file (vietnamese version)](https://docs.google.com/document/d/1hOOiTFm2wsBKgGwJUieeX5dTu9OoII9BGVdYOSPCmSc)
 
 ---
 ## 🔧 Folder Structure
@@ -206,9 +205,8 @@ Video of the experiment: [Sensor-based testing demonstration](https://drive.goog
 │   └── .env.example              # Example environment config
 │
 ├── docs/                         # Diagrams, report, and presentation
-│   ├── Report.pdf
-│   ├── Circuit_Diagram.png
-│   └── Flowchart.png
+│   ├── IOT102_Project Report_EN.pdf
+│   └── IOT102_Project Report_VN.pdf
 │
 ├── LICENSE                       # MIT License
 ├── README.md                     # This readme
