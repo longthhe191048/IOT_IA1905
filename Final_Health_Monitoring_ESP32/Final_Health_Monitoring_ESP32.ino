@@ -44,6 +44,9 @@ const int daylightOffset_sec = 0;
 #define RX_PIN 16
 #define TX_PIN 17
 
+// Buzzer pin
+#define BUZZER_PIN 5
+
 // Web server
 WebServer server(80);
 
@@ -80,6 +83,7 @@ void handleStatus();
 void handleClear();
 void sendToSupabase(const char* table, float bpm, float temp, const char* timestampField);
 String getCurrentTimestamp();
+void playBuzzer(int times);
 
 // HTML for the web interface
 const char* html = R"rawliteral(
@@ -630,10 +634,18 @@ void printLocalTime() {
   Serial.println(timeString);
 }
 
+void playBuzzer(int times) {
+  for (int i = 0; i < times; i++) {
+    tone(BUZZER_PIN, 1000, 200); // 1000 Hz for 200 ms
+    delay(300); // Short pause between beeps
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   Serial2.begin(115200, SERIAL_8N1, RX_PIN, TX_PIN);
   EEPROM.begin(EEPROM_SIZE);
+  pinMode(BUZZER_PIN, OUTPUT);
 
   if (EEPROM.read(VALID_FLAG_ADDR) == VALID_FLAG) {
     readEEPROMString(SSID_ADDR, stored_ssid, 32);
@@ -680,7 +692,6 @@ void setup() {
       Serial.print("IP address: ");
       Serial.println(WiFi.localIP());
 
-      // NTP time synchronization with retry
       configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
       Serial.print("Synchronizing time with NTP...");
       int retryCount = 0;
@@ -692,7 +703,7 @@ void setup() {
       }
       if (time(nullptr)) {
         Serial.println("Time synchronized.");
-        printLocalTime(); // Print time to verify
+        printLocalTime();
       } else {
         Serial.println("Failed to synchronize time. Using default timestamp.");
       }
@@ -738,12 +749,14 @@ void loop() {
 
             if (currentMillis - previousFollowHourMillis >= followHourInterval) {
               sendToSupabase(supabaseTableFollowHour, avgValue, tempValue, "time");
+              playBuzzer(1); // Play buzzer once after sending to followhour
               previousFollowHourMillis = currentMillis;
             }
 
             if ((currentMillis - fingerStartMillis >= 60000) && !oneTestSent) {
               Serial.println("Finger held for 1 minute. Sending to ONETEST...");
               sendToSupabase(supabaseTableOneTest, avgValue, tempValue, "date");
+              playBuzzer(3); // Play buzzer three times after sending to onetest
               oneTestSent = true;
             }
           } else {
@@ -948,9 +961,9 @@ void sendToSupabase(const char* table, float bpm, float temp, const char* timest
 
 String getCurrentTimestamp() {
   time_t now = time(nullptr);
-  if (now < 100000) { // Check if time is invalid (near 1970)
+  if (now < 100000) {
     Serial.println("Invalid time, returning fallback timestamp");
-    return "1970-01-01T00:00:00+07:00"; // Fallback
+    return "1970-01-01T00:00:00+07:00";
   }
   char buffer[30];
   strftime(buffer, sizeof(buffer), "%Y-%m-%dT%H:%M:%S", localtime(&now));
