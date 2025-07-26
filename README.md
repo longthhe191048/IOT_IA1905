@@ -17,8 +17,7 @@
 
 ## 📌 Project Summary
 
-The remote health monitoring system is designed to collect vital signs from patients, such as body temperature and heart rate, using biomedical sensors. Data is displayed on an LCD screen and through a Web/App interface, allowing doctors to monitor and respond remotely. All data is stored in real-time in a database, which can be exported as spreadsheets (Excel) for analysis and reporting. The system also
-integrates a buzzer to emit signals when data is successfully sent to the database. 
+The remote health monitoring system is designed to collect vital signs from patients, such as body temperature and heart rate, using biomedical sensors. Data is displayed on an LCD screen and through a Web/App interface, allowing doctors to monitor and respond remotely. All data is stored in real-time in a database, which can be exported as spreadsheets (Excel) for analysis and reporting. The system also integrates a buzzer to emit signals when data is successfully sent to the database. 
 
 The project supports remote healthcare, especially in regions with limited medical staff or during pandemics.
 
@@ -28,7 +27,7 @@ The project supports remote healthcare, especially in regions with limited medic
 
 ### I.1. Motivation
 
-The demand for remote health monitoring is increasing, especially in the context of pandemics or in underserved areas. Vital signs like heart rate and temperature need constant monitoring. Automating and remotely accessing this data can help reduce strain on healthcare systems.
+The increasing demand for remote health monitoring, driven by pandemics and limited healthcare access in underserved regions, necessitates automated systems for monitoring vital signs like heart rate and temperature. This project aims to alleviate pressure on healthcare systems by enabling real-time, remote data access.
 
 ### I.2. Project Overview
 
@@ -50,6 +49,7 @@ The demand for remote health monitoring is increasing, especially in the context
 | **Arduino Uno**      | Main control board; reads data from sensors and communicates with ESP32 |
 | **MAX30102**         | Heart rate sensor                                                |
 | **GY-906 MLX90614**  | Temperature sensor                                               |
+| **Buzzer**           | Provides audible feedback for successful data transmission       |
 | **LCD I2C 16x2**     | Displays heart rate and temperature                              |
 | **Breadboard & wires** | Flexible connections for components                             |
 
@@ -232,7 +232,8 @@ Video of the experiment: [Sensor-based testing demonstration](https://drive.goog
 ### 1. Hardware Setup
 - Connect the MAX30102 and GY-906 sensors to the Arduino Uno.
 - Connect the LCD I2C display to the Arduino Uno.
-- Connect the Arduino Uno to the ESP32 via SoftwareSerial on pins 2 (RX) and 3 (TX) of the Arduino.
+- Connect the Arduino Uno to the ESP32 via SoftwareSerial on pins 2 (RX) and 3 (TX) of the Arduino, and pins 16 (RX) and 17 (TX) on the ESP32.
+- Connect the buzzer to ESP32 (pin 5).
 
 ### 2. Supabase Setup
 1. Go to [Supabase](https://supabase.com/) and create a new project.
