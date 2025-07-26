@@ -179,8 +179,8 @@ Video of the experiment: [Sensor-based testing demonstration](https://drive.goog
 ### V.1. Links
 
 - [Presentation Slides (Canva)](https://www.canva.com/design/DAGtuN_zcZg/F0IDgzr--heltMMNk1S87A/edit?utm_content=DAGtuN_zcZg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-- [Web testing link](longthhe191048.tech)
-- [Telegram bot](t.me/iot_su25_ia1905_bot)
+- [Web testing link](https://longthhe191048.tech)
+- [Telegram bot](https://t.me/iot_su25_ia1905_bot)
 
 ---
 ## 🔧 Folder Structure
